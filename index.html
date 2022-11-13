@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <main>
+        <form action="#" id="infix-submit">
+            <h3 class="infinix-form-header">Enter Postfix Value e.g. (a+b)*(c+d)</h3>
+            <em><span class="note-text">Note:</span>Variables should be any operator from a to z, and operators can be
+                any of <span class="note-operator-text">+</span>,<span class="note-operator-text">-</span> , <span
+                    class="note-operator-text">*</span>, or<span class="note-operator-text">/</span> </em>
+            <div>
+                <input type="text" id="input-infix">
+                <input type="submit" value="Convert">
+            </div>
+
+        </form>
+        <div class="postfix-result"></div>
+    </main>
+    <script>
+
+        let infixForm = document.querySelector("main>form#infix-submit");
+        let infixTextInput = document.querySelector("input#input-infix");
+        let postFixDisplay = document.querySelector("main>div.postfix-result");
+
+
+        infixForm.addEventListener("submit", (e) => {
+            e.preventDefault(); s
+            let infixValue = infixTextInput.value;
+            const postFixNode = document.createTextNode(infixToPostfix(infixValue));
+            postFixDisplay.appendChild(postFixNode);
+        })
+
+
+
+        // The main function to convert infix expression
+        //to postfix expression
+        function infixToPostfix(s) {
+
+            let st = [];
+            let result = "";
+
+            for (let i = 0; i < s.length; i++) {
+                let c = s[i];
+
+                // If the scanned character is
+                // an operand, add it to output string.
+                if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9'))
+                    result += c;
+
+                // If the scanned character is an
+                // ‘(‘, push it to the stack.
+                else if (c == '(')
+                    st.push('(');
+
+                // If the scanned character is an ‘)’,
+                // pop and to output string from the stack
+                // until an ‘(‘ is encountered.
+                else if (c == ')') {
+                    while (st[st.length - 1] != '(') {
+                        result += st[st.length - 1];
+                        st.pop();
+                    }
+                    st.pop();
+                }
+
+                //If an operator is scanned
+                else {
+                    while (st.length != 0 && prec(s[i]) <= prec(st[st.length - 1])) {
+                        result += st[st.length - 1];
+                        st.pop();
+                    }
+                    st.push(c);
+                }
+            }
+
+            // Pop all the remaining elements from the stack
+            while (st.length != 0) {
+                result += st[st.length - 1];
+                st.pop();
+            }
+
+            // document.write(result + "</br>");
+            return result;
+        }
+
+        /* HELPER */
+
+        //Function to return precedence of operators
+        function prec(c) {
+            if (c == '^')
+                return 3;
+            else if (c == '/' || c == '*')
+                return 2;
+            else if (c == '+' || c == '-')
+                return 1;
+            else
+                return -1;
+        }
+
+        let exp = "a+b*(c^d-e)^(f+g*h)-i";
+        infixToPostfix(exp);
+
+    </script>
+</body>
+
+</html>
