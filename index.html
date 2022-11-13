@@ -13,7 +13,7 @@
 
     <main>
         <form action="#" id="infix-submit">
-            <h3 class="infinix-form-header">Enter Postfix Value e.g. (a+b)*(c+d)</h3>
+            <h3 class="infix-form-header">Enter Postfix Value e.g. (a+b)*(c+d)</h3>
             <em><span class="note-text">Note:</span>Variables should be any operator from a to z, and operators can be
                 any of <span class="note-operator-text">+</span>,<span class="note-operator-text">-</span> , <span
                     class="note-operator-text">*</span>, or<span class="note-operator-text">/</span> </em>
@@ -23,17 +23,22 @@
             </div>
 
         </form>
-        <div class="postfix-result"></div>
+        <div>
+            <h3 class="postfix-header">Your Post-Fix is:</h3>
+            <div class="postfix-result"></div>
+        </div>
     </main>
     <script>
 
         let infixForm = document.querySelector("main>form#infix-submit");
         let infixTextInput = document.querySelector("input#input-infix");
-        let postFixDisplay = document.querySelector("main>div.postfix-result");
-
+        let postFixDisplay = document.querySelector("div.postfix-result");
 
         infixForm.addEventListener("submit", (e) => {
-            e.preventDefault(); s
+            e.preventDefault();
+            while (postFixDisplay.firstChild) {
+                postFixDisplay.removeChild(postFixDisplay.firstChild);
+            }
             let infixValue = infixTextInput.value;
             const postFixNode = document.createTextNode(infixToPostfix(infixValue));
             postFixDisplay.appendChild(postFixNode);
