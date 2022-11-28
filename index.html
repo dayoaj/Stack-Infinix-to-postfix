@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <title>Infix to Postfix</title>
 </head>
 
 <body>
@@ -13,7 +14,7 @@
 
     <main>
         <form action="#" id="infix-submit">
-            <h3 class="infix-form-header">Enter Postfix Value e.g. (a+b)*(c+d)</h3>
+            <h3 class="infix-form-header">Enter Infix Value e.g. (a+b)*(c+d)</h3>
             <em><span class="note-text">Note:</span>Variables should be any operator from a to z, and operators can be
                 any of <span class="note-operator-text">+</span>,<span class="note-operator-text">-</span> , <span
                     class="note-operator-text">*</span>, or<span class="note-operator-text">/</span> </em>
@@ -93,11 +94,10 @@
                 st.pop();
             }
 
-            // document.write(result + "</br>");
             return result;
         }
 
-        /* HELPER */
+        /* HELPER FUNCTION*/
 
         //Function to return precedence of operators
         function prec(c) {

@@ -1,0 +1,35 @@
+body {
+  font-family: sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #e0f2f1;
+background-image: url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 15l15 15H0V15zM15 0l15 15V0H15z' fill='%23546e7a' fill-opacity='0.4' fill-rule='evenodd'/%3E%3C/svg%3E");
+}
+
+main {
+  z-index: 1000;
+  margin: auto;
+  width: 50%;
+  height: 50%;
+  top: 50%;
+  border: 2px solid #e64a19;
+  border-radius: 5px;
+  padding: 10px;
+  align-self: center;
+  background-color: white;
+  padding: 16px;
+}
+
+.note-operator-text {
+  color: #ff6d00;
+  padding: 0 4px;
+}
+
+#infix-submit > em {
+  font-size: 16px;
+  margin: 0 0 14px 0;
+  display: inline-block;
+}
